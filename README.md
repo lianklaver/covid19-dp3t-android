@@ -1,3 +1,7 @@
+# DEUS
+
+Credit where credit's due. This app is based on https://github.com/DP-3T/dp3t-app-android, we are adapting it to the Dutch market. Check out https://deus.ai/ for more about DEUS.
+
 # DP3T Android Demo App
 
 [![License: MPL 2.0](https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg)](https://github.com/DP-3T/dp3t-app-android/blob/master/LICENSE)
