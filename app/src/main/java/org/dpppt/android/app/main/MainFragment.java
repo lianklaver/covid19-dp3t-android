@@ -10,6 +10,8 @@ import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -17,8 +19,10 @@ import androidx.lifecycle.ViewModelProvider;
 
 import java.util.List;
 
+import org.dpppt.android.app.MainApplication;
 import org.dpppt.android.app.main.model.AppState;
 import org.dpppt.android.app.main.views.HeaderView;
+import org.dpppt.android.sdk.DP3T;
 import org.dpppt.android.sdk.TracingStatus;
 
 import org.dpppt.android.app.R;
@@ -26,6 +30,7 @@ import org.dpppt.android.app.contacts.ContactsFragment;
 import org.dpppt.android.app.notifications.NotificationsFragment;
 import org.dpppt.android.app.trigger.TriggerFragment;
 import org.dpppt.android.app.util.TracingStatusHelper;
+import org.dpppt.android.sdk.internal.SyncWorker;
 
 public class MainFragment extends Fragment {
 
@@ -43,6 +48,7 @@ public class MainFragment extends Fragment {
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
 		tracingViewModel = new ViewModelProvider(requireActivity()).get(TracingViewModel.class);
 	}
 
@@ -103,6 +109,10 @@ public class MainFragment extends Fragment {
 						.replace(R.id.main_fragment_container, TriggerFragment.newInstance())
 						.addToBackStack(TriggerFragment.class.getCanonicalName())
 						.commit());
+
+		View buttonSync = view.findViewById(R.id.main_button_sync);
+		buttonSync.setOnClickListener(
+				v -> DP3T.demoSyncNow(MainApplication.application));
 
 		tracingViewModel.getSelfOrContactExposedLiveData().observe(getViewLifecycleOwner(),
 				selfOrContactExposed -> {

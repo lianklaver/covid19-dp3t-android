@@ -318,6 +318,7 @@ anonymous"</string>
     <!-- Hinweis Text -->
     <string name="hinweis_text">"One person you met was tested positive for COVID-19."</string>
     <string name="button_report_illness">"Report illness"</string>
+    <string name="button_sync">"Force Sync Now"</string>
     <string name="meldungen_meldung_title">"Note"</string>
     <string name="meldungen_meldung_text">"One person you met was tested positive for COVID-19. Please read the information about the recommended behaviour here."</string>
     <string name="meldungen_meldung_more_button">"Learn more"</string>

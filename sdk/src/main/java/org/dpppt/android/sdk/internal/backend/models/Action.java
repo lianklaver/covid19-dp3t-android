@@ -4,6 +4,9 @@
  * Copyright (c) 2020. All rights reserved.
  */
 
-rootProject.name='NextStep'
-include ':app'
-include ':sdk'
+package org.dpppt.android.sdk.internal.backend.models;
+
+public enum Action {
+	ADD,
+	REMOVE
+}

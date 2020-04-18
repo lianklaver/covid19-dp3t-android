@@ -12,8 +12,8 @@
 	<color name="colorControlHighlight">#FFCC00</color>
 
 	<color name="dark_main">#535263</color>
-	<color name="blue_main">#5559A0</color>
-	<color name="green_main">#00BFA6</color>
+	<color name="blue_main">#F05300</color>
+	<color name="green_main">#535353</color>
 	<color name="red_main">#FF6584</color>
 
 	<color name="background_light">#FFF</color>
