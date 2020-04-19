@@ -39,9 +39,9 @@ interface Repository {
 			return chain.proceed(request);
 		});
 
-//		int cacheSize = 50 * 1024 * 1024; // 50 MB
-//		Cache cache = new Cache(context.getCacheDir(), cacheSize);
-//		okHttpBuilder.cache(cache);
+		int cacheSize = 50 * 1024 * 1024; // 50 MB
+		Cache cache = new Cache(context.getCacheDir(), cacheSize);
+		okHttpBuilder.cache(cache);
 
 		return okHttpBuilder;
 	}

@@ -26,11 +26,4 @@ public class Exposee {
 		return onset;
 	}
 
-	@Override
-	public String toString() {
-		return "Exposee{" +
-				"key='" + key + '\'' +
-				", onset=" + onset.formatAsString() +
-				'}';
-	}
 }

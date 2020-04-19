@@ -16,10 +16,4 @@ public class ExposedList {
 		return exposed;
 	}
 
-	@Override
-	public String toString() {
-		return "ExposedList{" +
-				"exposed=" + exposed +
-				'}';
-	}
 }

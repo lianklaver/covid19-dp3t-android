@@ -40,10 +40,8 @@ public class BackendRepository implements Repository {
 
 	@Nullable
 	public ExposedList getExposees(@NonNull DayDate dayDate) throws IOException, ResponseException {
-		System.out.println("getExposees " + dayDate.formatAsString());
 		Response<ExposedList> response = backendService.getExposees(dayDate.formatAsString()).execute();
 		if (response.isSuccessful()) {
-			System.out.println("result " + response.body());
 			return response.body();
 		}
 		throw new ResponseException(response.raw());

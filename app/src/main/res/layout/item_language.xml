@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/stop_button_warning_textview"
+    style="@style/NextStep.Text.SectionTitle.Light"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:padding="@dimen/spacing_medium"
+    android:layout_marginBottom="@dimen/spacing_medium"
+    tools:background="@color/orange_main"
+    tools:text="English" />

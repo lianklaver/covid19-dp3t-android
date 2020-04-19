@@ -14,7 +14,6 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -23,11 +22,12 @@ import android.view.View;
 import android.view.animation.AnticipateInterpolator;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.OvershootInterpolator;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import org.dpppt.android.app.R;
 import org.dpppt.android.app.main.model.AppState;
@@ -35,7 +35,7 @@ import org.dpppt.android.app.main.model.AppState;
 import java.util.Iterator;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-public class HeaderView extends FrameLayout {
+public class HeaderView extends ConstraintLayout {
 
     private static final int MAX_NUM_ARCS = 20;
 
@@ -57,14 +57,16 @@ public class HeaderView extends FrameLayout {
 
     private ImageView icon;
     private ImageView iconBackground;
+    private TextView title;
+    private TextView description;
 
     private AppState currentState;
     private AnimatorSet iconAnimatorSet;
-//    private ValueAnimator colorAnimator;
     private Handler arcHandler;
     private ArcRunnable arcRunnable;
     private ConcurrentLinkedQueue<ArcObject> arcs = new ConcurrentLinkedQueue<>();
     private Paint paintArc;
+    private int arcColor;
     private int arcStrokeWidth;
     private int arcAlpha;
 
@@ -83,15 +85,15 @@ public class HeaderView extends FrameLayout {
         init(context, attrs, defStyleAttr, 0);
     }
 
-    public HeaderView(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-        init(context, attrs, defStyleAttr, defStyleRes);
-    }
-
     private void init(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         setForegroundGravity(Gravity.CENTER);
         setBackgroundColor(Color.TRANSPARENT);
+
         View headerContent = LayoutInflater.from(context).inflate(R.layout.view_header, this, true);
+
+        title = headerContent.findViewById(R.id.main_header_title);
+        description = headerContent.findViewById(R.id.main_header_description);
+
         icon = headerContent.findViewById(R.id.main_header_icon);
         icon.setScaleX(0);
         icon.setScaleY(0);
@@ -102,16 +104,12 @@ public class HeaderView extends FrameLayout {
         paintArc = new Paint();
         paintArc.setStyle(Paint.Style.STROKE);
         paintArc.setAntiAlias(true);
-        int arcColor = getResources().getColor(R.color.status_arc, null);
+        arcColor = getResources().getColor(R.color.status_arc, null);
         paintArc.setColor(arcColor);
         arcStrokeWidth = getResources().getDimensionPixelSize(R.dimen.header_stroke_width_arc);
         arcAlpha = Color.alpha(arcColor);
 
         arcHandler = new Handler();
-
-        if (icon.isInEditMode()) {
-            setState(AppState.TRACING);
-        }
     }
 
     public void stopArcAnimation() {
@@ -125,39 +123,33 @@ public class HeaderView extends FrameLayout {
         if (currentState == state) return;
         boolean initialUpdate = currentState == null;
 
-        int backgroundColor = Color.TRANSPARENT;
+        int titleRes = 0;
+        int descriptionRes = 0;
         int iconRes = 0;
         switch (state) {
             case TRACING:
-                iconRes = (R.drawable.ic_header_check);
-                backgroundColor = getResources().getColor(R.color.status_green, null);
+                iconRes = (R.drawable.ic_non_infected);
+                arcColor = getResources().getColor(R.color.status_arc_green, null);
+                titleRes = R.string.header_no_known_contact_title;
+                descriptionRes = R.string.header_no_known_contact_subtitle;
                 break;
             case ERROR:
-                iconRes = (R.drawable.ic_header_error);
-                backgroundColor = getResources().getColor(R.color.status_red, null);
-                break;
             case EXPOSED_ERROR:
+                iconRes = (R.drawable.ic_infected);
+                arcColor = getResources().getColor(R.color.status_arc_grey, null);
+                titleRes = R.string.tracing_error_title;
+                descriptionRes = R.string.tracing_error_text;
+                break;
             case EXPOSED:
-                iconRes = (R.drawable.ic_header_info);
-                backgroundColor = getResources().getColor(R.color.status_blue, null);
+                iconRes = (R.drawable.ic_infected);
+                arcColor = getResources().getColor(R.color.status_arc_red, null);
+                titleRes = R.string.header_covid_positive;
+                descriptionRes = R.string.header_covid_positive_subtitle;
                 break;
         }
+        title.setText(getContext().getString(titleRes));
+        description.setText(getContext().getString(descriptionRes));
         iconBackground.setImageResource(R.drawable.ic_header_background);
-
-//        if (colorAnimator != null && colorAnimator.isRunning()) colorAnimator.cancel();
-//        int startColor = ((ColorDrawable) getBackground()).getColor();
-//        int endColor = backgroundColor;
-//        colorAnimator = ValueAnimator.ofArgb(startColor, endColor);
-//        colorAnimator.setDuration(COLOR_ANIM_DURATION);
-//        colorAnimator.addUpdateListener(animation -> );
-        if (state == AppState.TRACING) {
-            setBackgroundResource(R.drawable.bg_main_header);
-        } else if (state == AppState.EXPOSED || state == AppState.EXPOSED_ERROR) {
-            setBackgroundResource(R.drawable.bg_main_header_exposed);
-        } else {
-            // colorAnimator.start();
-			setBackgroundColor(backgroundColor);
-        }
 
         if (iconAnimatorSet != null && iconAnimatorSet.isRunning()) iconAnimatorSet.cancel();
         if (initialUpdate) {
@@ -190,7 +182,6 @@ public class HeaderView extends FrameLayout {
 
         long now = System.currentTimeMillis();
         int halfW = Math.round(getWidth() * 0.5f);
-        int halfH = Math.round(getHeight() * 0.5f);
 
         Iterator<ArcObject> iter = arcs.iterator();
         while (iter.hasNext()) {
@@ -208,20 +199,20 @@ public class HeaderView extends FrameLayout {
             int alpha = Math.round(
                     (progress > ARC_FADE_IN_FRAC ? Math.max(1 - progress, 0) : progress * 1 / ARC_FADE_IN_FRAC) * arcAlpha);
             paintArc.setAlpha(alpha);
+            paintArc.setColor(arcColor);
 
-            int left = halfW - radius;
-            int top = halfH - radius;
-            int right = halfW + radius;
-            int bottom = halfH + radius;
-            canvas.drawArc(left, top, right, bottom, -ARC_HALF_ANGLE_DEG, 2 * ARC_HALF_ANGLE_DEG, false, paintArc);
-            canvas.drawArc(left, top, right, bottom, 180 - ARC_HALF_ANGLE_DEG, 2 * ARC_HALF_ANGLE_DEG, false, paintArc);
+            int[] location = new int[2];
+            icon.getLocationOnScreen(location);
+            int x = location[0] + icon.getWidth() / 2;
+            int y = location[1] + icon.getHeight() / 4;
+
+            canvas.drawCircle(x, y, radius, paintArc);
         }
 
         if (arcs.size() > 0) invalidate();
     }
 
-    private ValueAnimator createSizeAnimation(View view, float from, float to, long duration,
-                                              long delay) {
+    private ValueAnimator createSizeAnimation(View view, float from, float to, long duration, long delay) {
         ValueAnimator animator = ValueAnimator.ofFloat(from, to);
         animator.setInterpolator(new OvershootInterpolator(ANIM_OVERSHOOT_TENSION));
         animator.setDuration(duration);
@@ -234,8 +225,7 @@ public class HeaderView extends FrameLayout {
         return animator;
     }
 
-    private AnimatorSet createSizeBumpAnimation(View view, float to, long duration, Runnable
-            onBumpPeak) {
+    private AnimatorSet createSizeBumpAnimation(View view, float to, long duration, Runnable onBumpPeak) {
         long halfDur = duration / 2;
         AnimatorSet animatorSet = new AnimatorSet();
 
@@ -254,8 +244,7 @@ public class HeaderView extends FrameLayout {
         return animatorSet;
     }
 
-    private AnimatorSet createIconSwitchAnimation(ImageView iconView, ImageView iconBg,
-                                                  @DrawableRes int iconRes, long duration) {
+    private AnimatorSet createIconSwitchAnimation(ImageView iconView, ImageView iconBg, @DrawableRes int iconRes, long duration) {
         long halfDur = duration / 2;
         AnimatorSet animatorSet = new AnimatorSet();
         AnimatorSet bump = createSizeBumpAnimation(iconBg, ICON_BG_BUMP_FACTOR, duration, null);
@@ -295,8 +284,8 @@ public class HeaderView extends FrameLayout {
 
 
     private class ArcRunnable implements Runnable {
-        private boolean run = true;
         private final int newConsecutives;
+        private boolean run = true;
 
         private ArcRunnable(int numConsecutives) {
             newConsecutives = Math.max(numConsecutives - 1, 0);

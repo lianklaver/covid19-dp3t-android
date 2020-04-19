@@ -14,12 +14,12 @@ import org.dpppt.android.app.R;
 
 public class PhoneUtil {
 
-	public static void callHelpline(Context context) {
-		Intent intent = new Intent(Intent.ACTION_DIAL);
-		intent.setData(Uri.parse("tel:" + context.getString(R.string.tel_hotline)));
-		if (intent.resolveActivity(context.getPackageManager()) != null) {
-			context.startActivity(intent);
-		}
-	}
+    public static void callHelpline(Context context) {
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("tel:" + context.getString(R.string.tel_hotline)));
+        if (intent.resolveActivity(context.getPackageManager()) != null) {
+            context.startActivity(intent);
+        }
+    }
 
 }

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Created by Ubique Innovation AG
   ~ https://www.ubique.ch
   ~ Copyright (c) 2020. All rights reserved.
@@ -8,7 +7,7 @@
 <resources>
 
     <!-- Name der App -->
-    <string name="app_name">"Next Step"</string>
+    <string name="app_name">"WelzijNL"</string>
 
     <!-- App Name unter Icon (iOS) -->
     <!-- Fuzzy -->
@@ -84,7 +83,7 @@ I want to stop a potential infection chain by allowing the app to anonymously co
 I want to stop a potential infection chain by allowing the app to anonymously contact people who were recently close by."</string>
 
     <!-- Informieren: Danke -->
-    <string name="inform_send_thankyou">"THANK YOU!"</string>
+    <string name="inform_send_thankyou">"Thank you!"</string>
     <string name="inform_send_thankyou_text">"Your information was transmitted. You're making an important contribution to keeping the spread of COVID-19 at bay."</string>
 
     <!-- Symptome -->
@@ -318,7 +317,6 @@ anonymous"</string>
     <!-- Hinweis Text -->
     <string name="hinweis_text">"One person you met was tested positive for COVID-19."</string>
     <string name="button_report_illness">"Report illness"</string>
-    <string name="button_sync">"Force Sync Now"</string>
     <string name="meldungen_meldung_title">"Note"</string>
     <string name="meldungen_meldung_text">"One person you met was tested positive for COVID-19. Please read the information about the recommended behaviour here."</string>
     <string name="meldungen_meldung_more_button">"Learn more"</string>
@@ -381,4 +379,41 @@ Coronavirus Infoline
 
     <!-- Text der Nachricht, die auf Beta-Status Hinweist -->
     <string name="preview_warning_text">"This app was built as a preview to demonstrate the DP-3T implementation. It is not a final COVID-19 tracer."</string>
+
+
+    <!-- New translations -->
+    <!-- On boarding -->
+    <string name="splash_title">"WelzijNL"</string>
+    <string name="splash_slogan">"met elkaar, voor elkaar"</string>
+    <string name="splash_message">"samen verslaan we COVID-19"</string>
+    <string name="language_selection_title">"Select your language"</string>
+    <string name="language_selection_continue_button_title">"Let's go"</string>
+    <string name="language_selection_save_button_title">"Save"</string>
+    <string name="language_selection_nederlands">"Nederlands"</string>
+    <string name="language_selection_english">"English"</string>
+    <string name="onboarding_step_one_title">"Privacy-first\ncontact tracing"</string>
+    <string name="onboarding_step_one_message">"Help limit the COVID-19 virus with completely anonymous tracing.\nThis app recognises encounters with other users and saves them anonymously on your device using encryption."</string>
+    <string name="onboarding_step_two_title">"Inform and be informed"</string>
+    <string name="onboarding_step_two_message">"You will get notified when you have been near someone with COVID-19, and if you test positive you can anonymously inform everyone you've encountered so that they can take the necessary measures."</string>
+    <string name="onboarding_step_permission_title">"Let's set up\nyour phone"</string>
+    <string name="onboarding_step_permission_message">"This app needs the following permissions to work properly."</string>
+    <string name="permission_tracing_name">"Tracing"</string>
+    <string name="permission_tracing_step">"step 1: allow"</string>
+    <string name="permission_battery_name">"Battery optimization"</string>
+    <string name="permission_battery_step">"step 2: activate"</string>
+    <string name="permission_bluetooth_name">"Bluetooth"</string>
+    <string name="permission_bluetooth_step">"step 3: activate"</string>
+    <string name="onboarding_done_button_title">"OK done"</string>
+    <string name="onboarding_next_button_title">"next"</string>
+
+    <!-- Main -->
+    <string name="dashboard_hide_status_button">"hide status"</string>
+    <string name="dashboard_show_status_button">"show status"</string>
+    <string name="header_no_known_contact_title">"No known contact"</string>
+    <string name="header_no_known_contact_subtitle">"You haven’t been near anyone that has tested positive for COVID-19"</string>
+    <string name="header_covid_positive">"COVID-19 positive"</string>
+    <string name="header_covid_positive_subtitle">"You have tested positive for the COVID-19 virus. You must isolate"</string>
+    <string name="header_possible_exposure">"possible exposure"</string>
+    <string name="header_possible_exposure_subtitle">"You have been near someone that has tested positive for COVID-19"</string>
+
 </resources>

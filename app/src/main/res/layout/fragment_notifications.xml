@@ -65,14 +65,6 @@
 
 				</FrameLayout>
 
-				<ImageView
-					android:id="@+id/notifications_bubble_triangle"
-					android:layout_width="@dimen/message_triangle_size"
-					android:layout_height="@dimen/message_triangle_size"
-					android:layout_marginStart="@dimen/spacing_very_large"
-					android:src="@drawable/triangle"
-					tools:tint="blue_main" />
-
 				<LinearLayout
 					android:id="@+id/notifications_exposed_information_group"
 					android:layout_width="match_parent"
@@ -81,7 +73,7 @@
 					android:orientation="vertical">
 
 					<TextView
-						style="@style/NextStep.Text.Bold.Blue"
+						style="@style/NextStep.Text.Bold"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:layout_marginBottom="@dimen/spacing_medium"
@@ -105,7 +97,7 @@
 					</LinearLayout>
 
 					<TextView
-						style="@style/NextStep.Text.Bold.Blue"
+						style="@style/NextStep.Text.Bold"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:layout_marginBottom="@dimen/spacing_medium"

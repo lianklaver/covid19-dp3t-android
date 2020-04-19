@@ -11,13 +11,19 @@
 	<color name="colorAccent">@color/green_main</color>
 	<color name="colorControlHighlight">#FFCC00</color>
 
-	<color name="dark_main">#535263</color>
-	<color name="blue_main">#F05300</color>
-	<color name="green_main">#535353</color>
+	<color name="regular_main">#535353</color>
+	<color name="regular_main_secondary">#B4B4B4</color>
+	<color name="light_main">#FFFFFF</color>
+	<color name="dark_main">#000000</color>
+	<color name="dark_lighter_main">#A6000000</color>
+	<color name="blue_main">#5559A0</color>
+	<color name="green_main">#00BFA6</color>
 	<color name="red_main">#FF6584</color>
+	<color name="orange_main">#FF7200</color>
+	<color name="orange_lighter_main">#73FF7200</color>
 
 	<color name="background_light">#FFF</color>
-	<color name="color_selected">@color/green_main</color>
+	<color name="color_selected">@color/orange_main</color>
 	<color name="color_deselected">#22000000</color>
 	<color name="white">#FFFFFF</color>
 	<color name="grey_dark">#80535263</color>
@@ -28,9 +34,16 @@
 
 	<color name="status_green">#2BD9C2</color>
 	<color name="status_green_bg">#D3F2EE</color>
-	<color name="status_red">@color/red_main</color>
+	<color name="status_red">#DD5987</color>
 	<color name="status_blue">@color/blue_main</color>
+	<color name="status_grey">#868686</color>
 	<color name="status_arc">#1F000000</color>
+	<color name="status_arc_green">#1F2BD9C2</color>
+	<color name="status_arc_grey">#1F000000</color>
+	<color name="status_arc_red">#1FDD5987</color>
+	<color name="status_bar_green">#1fc08d</color>
+	<color name="status_bar_grey">#868686</color>
+	<color name="status_bar_red">#ce3e70</color>
 
 	<color name="divider">#0D000000</color>
 </resources>

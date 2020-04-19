@@ -72,11 +72,14 @@
 
 						<TextView
 							android:id="@+id/contacts_tracking_title"
-							style="@style/NextStep.Text.Title"
+							style="@style/NextStep.Text.SectionTitle"
 							android:layout_width="match_parent"
 							android:layout_height="wrap_content"
 							android:layout_alignParentStart="true"
 							android:layout_alignParentTop="true"
+							android:layout_marginStart="-2dp"
+							android:layout_marginTop="0dp"
+							android:layout_marginEnd="3dp"
 							android:layout_toStartOf="@id/contacts_tracking_switch"
 							android:text="@string/bluetooth_setting_title" />
 

@@ -27,9 +27,7 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:gravity="bottom|center_horizontal"
-				android:text="@string/inform_send_thankyou"
-				android:textAllCaps="true"
-				android:textColor="@color/green_main" />
+				android:text="@string/inform_send_thankyou" />
 
 			<TextView
 				android:layout_width="wrap_content"

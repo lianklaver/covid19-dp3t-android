@@ -7,8 +7,8 @@
 package org.dpppt.android.app.main.model;
 
 public enum AppState {
-	TRACING,
-	ERROR,
-	EXPOSED,
-	EXPOSED_ERROR
+    TRACING,
+    ERROR,
+    EXPOSED,
+    EXPOSED_ERROR
 }
